@@ -3,7 +3,7 @@
     - name: rustup downloaded
       get_url:
         url: https://sh.rustup.rs
-        dest: rustup.sh
+        dest: .
         force: no
       register: rustup_downloaded
     - debug:
