@@ -1,4 +1,4 @@
-- hosts: scaphandre-alpha
+- hosts: all
   tasks:
     - debug:
         msg: "Coucou from {{inventory_hostname}}"
