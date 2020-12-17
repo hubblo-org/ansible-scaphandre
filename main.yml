@@ -7,9 +7,9 @@
         force: no
         mode: 0775
       register: rustup_downloaded
-    - name: install rust
+    - name: rust installed
       shell: ./rustup-init.sh -y
-      #when: rustup_downloaded.changed is defined and rustup_downloaded.changed
+      when: rustup_downloaded.changed is defined and rustup_downloaded.changed
     - name: scaphandre repository cloned 
       git:
         clone: yes
@@ -17,3 +17,7 @@
         force: yes
         repo: https://github.com/hubblo-org/scaphandre.git
         dest: scaphandre
+    - name: build and test scaphandre
+      shell: cd ~/scaphandre && cargo build && ./target/debug/scaphandre stdout -t 2
+      #- name: build release and deploy
+      #  shell: cd ~/scaphandre && cargo build --release
