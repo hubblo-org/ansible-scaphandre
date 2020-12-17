@@ -6,8 +6,9 @@
         dest: .
         force: no
       register: rustup_downloaded
-    - debug:
-        var: rustup_downloaded
+    - name: install rust
+      shell: rustup-init.sh
+      when: rustup_downloaded.changed is defined && rustup_downloaded.changed
     - name: scaphandre repository cloned 
       git:
         clone: yes
