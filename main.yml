@@ -1,4 +1,17 @@
 - hosts: all
   tasks:
+    - name: rustup downloaded
+      get_url:
+        url: https://sh.rustup.rs
+        dest: rustup.sh
+        force: no
+      register: rustup_downloaded
     - debug:
-        msg: "Coucou from {{inventory_hostname}}"
+        var: rustup_downloaded
+    - name: scaphandre repository cloned 
+      git:
+        clone: yes
+        depth: 1
+        force: yes
+        repo: https://github.com/hubblo-org/scaphandre.git
+        dest: scaphandre
