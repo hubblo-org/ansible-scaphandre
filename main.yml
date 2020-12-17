@@ -8,7 +8,7 @@
         mode: 0775
       register: rustup_downloaded
     - name: install rust
-      shell: ./rustup-init.sh
+      shell: ./rustup-init.sh -y
       #when: rustup_downloaded.changed is defined and rustup_downloaded.changed
     - name: scaphandre repository cloned 
       git:
