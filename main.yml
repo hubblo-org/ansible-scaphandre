@@ -5,6 +5,7 @@
         url: https://sh.rustup.rs
         dest: .
         force: no
+        mode: 0775
       register: rustup_downloaded
     - name: install rust
       shell: ./rustup-init.sh
