@@ -1,0 +1,4 @@
+- hosts: all
+  tasks:
+    - name: build for release
+      shell: cd scaphandre && cargo build --release
