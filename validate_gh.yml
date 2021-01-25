@@ -8,10 +8,10 @@
         var: ansible_env
     - name: show parameters coming from github
       debug:
-        msg: "GITHUB_REPOSITORY: {{ GITHUB_REPOSITORY }}"
+        msg: "GITHUB_REPOSITORY: {{ github_repository }}"
     - name: show parameters coming from github
       debug:
-        msg: "GITHUB_ACTOR: {{ GITHUB_ACTOR }}"
+        msg: "GITHUB_ACTOR: {{ github_actor }}"
         #- name: rustup downloaded
         #  get_url:
         #    url: https://sh.rustup.rs
