@@ -1,0 +1,29 @@
+- hosts: all
+  tasks:
+    - name: show parameters coming from github
+      debug:
+        var: GITHUB_REPOSITORY
+    - name: show parameters coming from github
+      debug:
+        var: GITHUB_ACTOR
+        #- name: rustup downloaded
+        #  get_url:
+        #    url: https://sh.rustup.rs
+        #    dest: .
+        #    force: no
+        #    mode: 0775
+        #  register: rustup_downloaded
+        #- name: rust installed
+        #  shell: ./rustup-init.sh -y
+        #  when: rustup_downloaded.changed is defined and rustup_downloaded.changed
+        #- name: scaphandre repository cloned 
+        #  git:
+        #    clone: yes
+        #    depth: 1
+        #    force: yes
+        #    repo: https://github.com/hubblo-org/scaphandre.git
+        #    dest: scaphandre
+        #- name: build and test scaphandre
+        #shell: cd ~/scaphandre && cargo build && ./target/debug/scaphandre stdout -t 2
+      #- name: build release and deploy
+      #  shell: cd ~/scaphandre && cargo build --release
