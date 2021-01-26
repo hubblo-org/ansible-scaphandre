@@ -1,35 +1,40 @@
 - hosts: all
   tasks:
-    - name: debug facts
-      ansible.builtin.debug:
-        var: ansible_facts
-    - name: debug env
-      ansible.builtin.debug:
-        var: ansible_env
     - name: show parameters coming from github
       debug:
-        msg: "GITHUB_REPOSITORY: {{ github_repository }}"
-    - name: show parameters coming from github
-      debug:
-        msg: "GITHUB_ACTOR: {{ github_actor }}"
-        #- name: rustup downloaded
-        #  get_url:
-        #    url: https://sh.rustup.rs
-        #    dest: .
-        #    force: no
-        #    mode: 0775
-        #  register: rustup_downloaded
-        #- name: rust installed
-        #  shell: ./rustup-init.sh -y
-        #  when: rustup_downloaded.changed is defined and rustup_downloaded.changed
-        #- name: scaphandre repository cloned 
-        #  git:
-        #    clone: yes
-        #    depth: 1
-        #    force: yes
-        #    repo: https://github.com/hubblo-org/scaphandre.git
-        #    dest: scaphandre
-        #- name: build and test scaphandre
-        #shell: cd ~/scaphandre && cargo build && ./target/debug/scaphandre stdout -t 2
-      #- name: build release and deploy
-      #  shell: cd ~/scaphandre && cargo build --release
+        msg: "Request coming from github: |
+        actor: {{ github_actor | default(undefined) }} |
+        repo: {{ github_repository | default(undefined) }} |
+        workflow: {{ github_workflow | default(undefined) }} |
+        workspace: {{ github_workspace | default(undefined) }} |
+        event_name: {{ github_event_name | default(undefined) }} |
+        event_path: {{ github_event_path | default(undefined) }} |
+        sha: {{ github_sha | default(undefined) }} |
+        ref: {{ github_ref | default(undefined) }} |
+        head_ref: {{ github_head_ref | default(undefined) }} |
+        base_ref: {{ github_base_ref | default(undefined)}} |
+        server_url: {{ github_server_url | default(undefined)}} |
+        branch: {{ github_branch | default(undefined) }}
+        "
+    - fail:
+        msg: Repository is not authorized to run this job.
+      when: github_repository != "hubblo-org/scaphandre"
+    - name: rustup downloaded
+      get_url:
+        url: https://sh.rustup.rs
+        dest: .
+        force: no
+        mode: 0775
+      register: rustup_downloaded
+    - name: rust installed
+      shell: ./rustup-init.sh -y
+      when: rustup_downloaded.changed is defined and rustup_downloaded.changed
+    - name: scaphandre repository cloned 
+      git:
+        clone: yes
+        depth: 1
+        force: yes
+        repo: https://github.com/hubblo-org/scaphandre.git
+        dest: scaphandre
+    - name: build and test scaphandre
+      shell: cd ~/scaphandre && cargo build && ./target/debug/scaphandre stdout -t 2
