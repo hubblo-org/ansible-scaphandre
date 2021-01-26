@@ -35,5 +35,5 @@
         force: yes
         repo: https://github.com/hubblo-org/scaphandre.git
         dest: scaphandre
-    - name: build and test scaphandre
-      shell: cd ~/scaphandre && cargo build && ./target/debug/scaphandre stdout -t 2
+    - name: build and run scaphandre
+      shell: cd ~/scaphandre && cargo build && ./target/debug/scaphandre stdout -t 2 && cargo test --all
