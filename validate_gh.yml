@@ -3,18 +3,17 @@
     - name: show parameters coming from github
       debug:
         msg: "Request coming from github: |
-        actor: {{ github_actor | default('undefined') }} |
-        repo: {{ github_repository | default('undefined') }} |
-        workflow: {{ github_workflow | default('undefined') }} |
-        workspace: {{ github_workspace | default('undefined') }} |
-        event_name: {{ github_event_name | default('undefined') }} |
-        event_path: {{ github_event_path | default('undefined') }} |
-        sha: {{ github_sha | default('undefined') }} |
-        ref: {{ github_ref | default('undefined') }} |
-        head_ref: {{ github_head_ref | default('undefined') }} |
-        base_ref: {{ github_base_ref | default('undefined')}} |
-        server_url: {{ github_server_url | default('undefined')}} |
-        branch: {{ github_branch | default('undefined') }}
+        actor: {{ github_actor | default('undefined') }} 
+        repo: {{ github_repository | default('undefined') }} 
+        workflow: {{ github_workflow | default('undefined') }} 
+        workspace: {{ github_workspace | default('undefined') }} 
+        event_name: {{ github_event_name | default('undefined') }} 
+        event_path: {{ github_event_path | default('undefined') }} 
+        sha: {{ github_sha | default('undefined') }} 
+        ref: {{ github_ref | default('undefined') }} 
+        head_ref: {{ github_head_ref | default('undefined') }} 
+        base_ref: {{ github_base_ref | default('undefined')}} 
+        server_url: {{ github_server_url | default('undefined')}} 
         "
     - fail:
         msg: Repository is not authorized to run this job.
