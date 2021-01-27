@@ -38,4 +38,4 @@
     - name: build and run scaphandre
       shell: cd ~/scaphandre && cargo build && ./target/debug/scaphandre stdout -t 2 && cd ~
     - name: run unit tests
-      shell: cargo test --all
+      shell: cd ~/scaphandre && cargo test --all
