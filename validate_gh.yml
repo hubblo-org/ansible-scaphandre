@@ -36,4 +36,6 @@
         repo: https://github.com/hubblo-org/scaphandre.git
         dest: scaphandre
     - name: build and run scaphandre
-      shell: cd ~/scaphandre && cargo build && ./target/debug/scaphandre stdout -t 2 && cargo test --all
+      shell: cd ~/scaphandre && cargo build && ./target/debug/scaphandre stdout -t 2 && cd ~
+    - name: run unit tests
+      shell: cargo test --all
