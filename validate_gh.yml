@@ -15,9 +15,9 @@
         base_ref: {{ github_base_ref | default('undefined')}} 
         server_url: {{ github_server_url | default('undefined')}} 
         "
-    - fail:
-        msg: Repository is not authorized to run this job.
-      when: github_repository != "hubblo-org/scaphandre"
+        #- fail:
+        #    msg: Repository is not authorized to run this job.
+        #  when: github_repository != "hubblo-org/scaphandre"
     - name: rustup downloaded
       get_url:
         url: https://sh.rustup.rs
