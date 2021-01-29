@@ -3,9 +3,7 @@
     - name: show parameters coming from github
       debug:
         msg: "Request coming from github: |
-        actor: {{ github_actor | default('undefined') }} 
-        repo: {{ github_repository | default('undefined') }} 
-        workflow: {{ github_workflow | default('undefined') }} 
+        actor: {{ github_actor | default('undefined') }} repo: {{ github_repository | default('undefined') }} workflow: {{ github_workflow | default('undefined') }} 
         workspace: {{ github_workspace | default('undefined') }} 
         event_name: {{ github_event_name | default('undefined') }} 
         event_path: {{ github_event_path | default('undefined') }} 
@@ -35,6 +33,7 @@
         force: yes
         repo: "https://github.com/{{ github_repository | default('hubblo-org/scaphandre') }}.git"
         version: "{{ github_sha }}"
+        refspec: "{{ github_ref }}"
         dest: scaphandre
     - name: build and run scaphandre
       shell: cd ~/scaphandre && cargo build && ./target/debug/scaphandre stdout -t 2 && cd ~
