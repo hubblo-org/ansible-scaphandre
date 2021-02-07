@@ -1,5 +1,8 @@
 - hosts: all
   tasks:
+    - name: Debug env
+      debug:
+        var: env
     - name: show parameters coming from github
       debug:
         msg: "Request coming from github: |
@@ -13,9 +16,12 @@
         base_ref: {{ github_base_ref | default('undefined')}} 
         server_url: {{ github_server_url | default('undefined')}} 
         "
-        #- fail:
-        #    msg: Repository is not authorized to run this job.
-        #  when: github_repository != "hubblo-org/scaphandre"
+    - fail:
+        msg: Server URL is not authorized to run this job.
+      when: github_server_url != "https://github.com"
+    - fail:
+        msg: Repository is not authorized to run this job.
+      when: !("scaphandre" in github_repository)
     - name: rustup downloaded
       get_url:
         url: https://sh.rustup.rs
