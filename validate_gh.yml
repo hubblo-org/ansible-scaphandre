@@ -21,7 +21,7 @@
       when: github_server_url != "https://github.com"
     - fail:
         msg: Repository is not authorized to run this job.
-      when: "scaphandre" not in github_repository
+      when: not "scaphandre" in github_repository
     - name: rustup downloaded
       get_url:
         url: https://sh.rustup.rs
