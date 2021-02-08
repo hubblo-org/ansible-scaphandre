@@ -22,11 +22,7 @@
         msg: Repository is not authorized to run this job.
       when: not "scaphandre" in github_repository
     - name: notify gitter room of job running
-      get_url:
-        url: https://webhooks.gitter.im/e/6490ed7689c7c47dbf94
-        dest: result.txt
-        headers:
-          message: this is a test
+      raw: curl --data-urlencode "message=AWX: Running job from github actor=**{{ github_actor | default('undefined') }}** repo=**{{ github_repository | default('undefined') }}** sha=**{{ github_sha | default('undefined') server_url=**{{ github_server_url | default('undefined') }}**" https://webhooks.gitter.im/e/6490ed7689c7c47dbf94
     - name: rustup downloaded
       get_url:
         url: https://sh.rustup.rs
