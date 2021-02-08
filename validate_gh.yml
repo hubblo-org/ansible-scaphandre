@@ -24,6 +24,7 @@
     - name: notify gitter room of job running
       get_url:
         url: https://webhooks.gitter.im/e/6490ed7689c7c47dbf94
+        dest: result.txt
         headers:
           message: this is a test
     - name: rustup downloaded
