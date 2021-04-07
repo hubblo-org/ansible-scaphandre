@@ -51,4 +51,4 @@
     - name: boot docker stack
       shell: cd ~/scaphandre/docker-compose && docker-compose down; docker-compose up -f docker-compose-dev.yml -d 
     - name: tests prometheus exporter
-      shell: [[ "$(curl -s http://localhost:9090/api/v1/targets | jq .data.activeTargets[1].health | tr -d '"')" == "up" ]]
+      shell: "[[ \"$(curl -s http://localhost:9090/api/v1/targets | jq .data.activeTargets[1].health | tr -d '"')\" == \"up\" ]]"
