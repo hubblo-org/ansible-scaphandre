@@ -49,6 +49,6 @@
     - name: build docker image
       shell: cd ~/scaphandre && docker build -t scaphandre-dev .
     - name: boot docker stack
-      shell: cd ~/scaphandre/docker-compose && docker-compose down; docker-compose up -f docker-compose-dev.yml -d 
+      shell: cd ~/scaphandre/docker-compose && docker-compose down || true; docker-compose up -f docker-compose-dev.yml -d 
     - name: tests prometheus exporter
       shell: curl -s http://localhost:9090/api/v1/targets | jq .data.activeTargets[1].health | tr -d '"' | grep up
