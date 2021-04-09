@@ -36,7 +36,6 @@
     - name: scaphandre repository cloned 
       git:
         clone: yes
-        depth: 1
         force: yes
         repo: "https://github.com/{{ github_repository | default('hubblo-org/scaphandre') }}.git"
         version: "{{ github_sha }}"
