@@ -50,6 +50,6 @@
     - name: boot docker stack
       shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml up -d 
     - name: tests prometheus exporter
-      shell: sleep 10 && curl -s http://localhost:9099/api/v1/targets | jq .data.activeTargets[1].health | tr -d '"' | grep up
+      shell: sleep 15 && curl -s http://localhost:9099/api/v1/targets | jq .data.activeTargets[1].health | tr -d '"' | grep up
     - name: cleaning the stack
       shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml down
