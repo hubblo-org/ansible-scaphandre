@@ -48,8 +48,8 @@
       shell: cd ~/scaphandre && cargo test --all
     - name: build docker image
       shell: cd ~/scaphandre && docker build -t scaphandre-dev .
-    - name: cleaning the stack
-      shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml down
+    - name: rebuild the stack
+      shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml build prometheus
     - name: boot docker stack
       shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml up -d 
     - name: first metrics scraping test
