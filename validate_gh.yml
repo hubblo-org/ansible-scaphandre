@@ -5,10 +5,7 @@
         msg: "Request coming from github: |
         actor: {{ github_actor | default('undefined') }}
         repo: {{ github_repository | default('undefined') }}
-        workflow: {{ github_workflow | default('undefined') }} 
-        workspace: {{ github_workspace | default('undefined') }} 
-        event_name: {{ github_event_name | default('undefined') }} 
-        event_path: {{ github_event_path | default('undefined') }} 
+        workflow: {{ github_workflow | default('undefined') }} workspace: {{ github_workspace | default('undefined') }} event_name: {{ github_event_name | default('undefined') }} event_path: {{ github_event_path | default('undefined') }} 
         sha: {{ github_sha | default('undefined') }} 
         ref: {{ github_ref | default('undefined') }} 
         head_ref: {{ github_head_ref | default('undefined') }} 
@@ -53,7 +50,7 @@
     - name: boot docker stack
       shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml up -d 
     - name: first metrics scraping test
-      shell: curl -s http://localhost:8080/metrics
+      shell: curl -s http://localhost:8089/metrics
     - name: tests prometheus exporter
       shell: sleep 25 && curl -s http://localhost:9099/api/v1/targets | jq .data.activeTargets[1].health | tr -d '"' | grep up
     - name: check docker labels
