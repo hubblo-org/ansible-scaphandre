@@ -1,3 +1,5 @@
+- hosts: all
+  tasks:
     - name: rebuild the stack
       shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml build prometheus
     - name: boot docker stack

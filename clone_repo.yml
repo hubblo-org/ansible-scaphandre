@@ -1,3 +1,5 @@
+- hosts: all
+  tasks:
     - name: scaphandre repository cloned 
       git:
         clone: yes

@@ -1,2 +1,0 @@
-    - name: build docker image
-      shell: cd ~/scaphandre && docker build -t scaphandre-dev .

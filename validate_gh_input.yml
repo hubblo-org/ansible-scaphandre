@@ -1,3 +1,5 @@
+- hosts: all
+  tasks:
     - name: show parameters coming from github
       debug:
         msg: "Request coming from github: |

@@ -1,3 +1,5 @@
+- hosts: all
+  tasks:
     - name: rustup downloaded
       get_url:
         url: https://sh.rustup.rs

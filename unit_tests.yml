@@ -1,2 +1,4 @@
+- hosts: all
+  tasks:
     - name: run unit tests
       shell: cd ~/scaphandre && cargo test --all
