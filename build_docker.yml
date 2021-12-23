@@ -1,4 +1,4 @@
 hosts: all
 tasks:
   - name: build docker image
-    shell: cd ~/scaphandre && docker build -t scaphandre-dev .
+    shell: "cd {{ SCAPHANDRE_PATH }} && docker build -t scaphandre-dev ."
