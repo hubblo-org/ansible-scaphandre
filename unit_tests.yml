@@ -1,5 +1,5 @@
 - hosts: all
   tasks:
-    - include_tasks: "include/validate_gh_input.yml"
+    - import_tasks: "include/validate_gh_input.yml"
     - name: run unit tests
       shell: "cd {{ SCAPHANDRE_PATH }} && cargo test --all"
