@@ -1,0 +1,12 @@
+    - name: rebuild the stack
+      shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml build prometheus
+    - name: boot docker stack
+      shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml up -d 
+    - name: first metrics scraping test
+      shell: curl -s http://localhost:8089/metrics
+    - name: tests prometheus exporter
+      shell: sleep 25 && curl -s http://localhost:9099/api/v1/targets | jq .data.activeTargets[1].health | tr -d '"' | grep up
+    - name: check docker labels
+      shell: curl -s http://localhost:8089/metrics | grep 'container_scheduler="docker"' | grep 'container_names' | grep prometheus_1
+    - name: cleaning the stack
+      shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml down

@@ -1,0 +1,10 @@
+    - name: rustup downloaded
+      get_url:
+        url: https://sh.rustup.rs
+        dest: .
+        force: no
+        mode: 0775
+      register: rustup_downloaded
+    - name: rust installed
+      shell: ./rustup-init.sh -y
+      when: rustup_downloaded.changed is defined and rustup_downloaded.changed

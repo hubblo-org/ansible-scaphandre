@@ -1,0 +1,8 @@
+- hosts: all
+  tasks:
+    - include_tasks: "include/validate_gh_input.yml"
+    - include_tasks: "include/prepare_env.yml"
+    - include_tasks: "include/clone_repo.yml"
+    - include_tasks: "include/unit_tests.yml"
+    - include_tasks: "include/build_docker.yml"
+    - include_tasks: "include/prometheus_in_docker.yml"

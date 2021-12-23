@@ -1,0 +1,9 @@
+    - name: scaphandre repository cloned 
+      git:
+        clone: yes
+        update: yes
+        force: yes
+        repo: "https://github.com/{{ github_repository | default('hubblo-org/scaphandre') }}.git"
+        version: "{{ github_sha }}"
+        refspec: "{{ github_ref }}"
+        dest: scaphandre

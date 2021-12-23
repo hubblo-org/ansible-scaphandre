@@ -1,0 +1,2 @@
+      #    - name: notify gitter room of job running
+      #      raw: "curl --data-urlencode \"message=AWX: Running job from github actor=**{{ github_actor | default('undefined') }}** repo=**{{ github_repository | default('undefined') }}** sha=**{{ github_sha | default('undefined') }}** server_url=**{{ github_server_url | default('undefined') }}**\" https://webhooks.gitter.im/e/6490ed7689c7c47dbf94"
