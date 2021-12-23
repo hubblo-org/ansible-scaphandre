@@ -1,4 +1,5 @@
 hosts: all
 tasks:
+  - include_tasks: "include/validate_gh_input.yml"
   - name: build docker image
     shell: "cd {{ SCAPHANDRE_PATH }} && docker build -t scaphandre-dev ."

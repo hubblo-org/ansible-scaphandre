@@ -1,5 +1,6 @@
 - hosts: all
   tasks:
+    - include_tasks: "include/validate_gh_input.yml"
     - name: rebuild the stack
       shell: "cd {{ SCAPHANDRE_PATH }}/docker-compose && docker-compose -f docker-compose-dev.yaml build prometheus"
     - name: boot docker stack
