@@ -49,6 +49,8 @@
       shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml build prometheus
     - name: boot docker stack
       shell: cd ~/scaphandre/docker-compose && docker-compose -f docker-compose-dev.yaml up -d 
+    - name: print logs from booting stack
+      shell: cd ~/scaphandre/docker-compose && docker-compose logs
     - name: first metrics scraping test
       shell: curl -s http://localhost:8089/metrics
     - name: tests prometheus exporter
