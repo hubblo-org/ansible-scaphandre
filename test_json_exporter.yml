@@ -19,4 +19,8 @@
         msg: Repository is not authorized to run this job.
       when: not "scaphandre" in github_repository
     - name: Ensure JSON exporter CLI is working properly
-      shell: "cd {{ SCAPHANDRE_PATH }} && ./target/debug/scaphandre json --help"
+      shell: "cd {{ SCAPHANDRE_PATH }} && ./target/debug/scaphandre --no-header json --containers --container-regex=\"prometheus\""
+      register: json_result
+    - name: Display json result
+      debug:
+        var: json_result
