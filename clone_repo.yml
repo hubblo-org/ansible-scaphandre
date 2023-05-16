@@ -18,11 +18,13 @@
     - fail:
         msg: Repository is not authorized to run this job.
       when: not "scaphandre" in github_repository
+        #- name: clean old scaphandre local clone
+        #  file:
+        #    path: "{{ SCAPHANDRE_PATH }}"
+        #    state: absent
+        #    recurse: yes
     - name: clean old scaphandre local clone
-      file:
-        path: "{{ SCAPHANDRE_PATH }}"
-        state: absent
-        recurse: yes
+      shell: rm -Rf /root/scaphandre-dev
     - name: scaphandre repository cloned 
       git:
         clone: yes
