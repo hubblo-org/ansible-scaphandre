@@ -19,7 +19,7 @@
         msg: Repository is not authorized to run this job.
       when: not "scaphandre" in github_repository
     - name: Ensure JSON exporter CLI is working properly
-      shell: "cd {{ SCAPHANDRE_PATH }} && ./target/debug/scaphandre --no-header json --containers --container-regex=\"prometheus\""
+      shell: "cd {{ SCAPHANDRE_PATH }} && res=$(./target/debug/scaphandre --no-header json -s 4 -t 10 --process-regex=\".*prometheus.*\" | jq .consumers[0].consumption);  for r in $res; do if [ $(echo "$r > 0.0" | bc -l) -eq 1 ]; then echo OK; else exit 1; fi; done"
       register: json_result
     - name: Display json result
       debug:
