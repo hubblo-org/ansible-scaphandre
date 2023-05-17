@@ -19,4 +19,4 @@
         msg: Repository is not authorized to run this job.
       when: not "scaphandre" in github_repository
     - name: run unit tests
-      shell: "cd {{ SCAPHANDRE_PATH }} && cargo test --all"
+      shell: "mkdir -p {{ SCAPHANDRE_PATH }} && cd {{ SCAPHANDRE_PATH }} && cargo test --all"
