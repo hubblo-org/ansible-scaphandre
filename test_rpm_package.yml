@@ -1,4 +1,4 @@
-- hosts: redhat9
+- hosts: all
   user: root
   tasks:
     - name: show parameters coming from github
