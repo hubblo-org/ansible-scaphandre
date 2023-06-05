@@ -31,6 +31,8 @@
       shell: "dnf install -y {{ download.dest }}" 
     - name: Refresh systemd config
       shell: systemctl daemon-reload
+    - name: Start & enable service
+      shell: systemctl start scaphandre && systemctl enable scaphandre
     - name: Check service state
       shell: systemctl status scaphandre
       register: result
