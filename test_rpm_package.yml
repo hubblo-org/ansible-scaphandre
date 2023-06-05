@@ -29,6 +29,8 @@
       register: download
     - name: Install RPM package
       shell: "dnf install -y {{ download.dest }}" 
+    - name: Refresh systemd config
+      shell: systemctl daemon-reload
     - name: Check service state
       shell: systemctl status scaphandre
       register: result
