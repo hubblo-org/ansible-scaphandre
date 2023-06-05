@@ -21,8 +21,8 @@
         msg: Repository is not authorized to run this job.
       when: not "scaphandre" in github_repository
     - name: Ensure scaphandre package is purged
-      community.general.apt_rpm:
-        pkg: scaphandre
+      package:
+        name: scaphandre
         state: absent
     - name: Get RPM package
       get_url:
