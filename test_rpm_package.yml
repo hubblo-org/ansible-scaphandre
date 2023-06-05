@@ -21,9 +21,7 @@
         msg: Repository is not authorized to run this job.
       when: not "scaphandre" in github_repository
     - name: Ensure scaphandre package is purged
-      package:
-        name: scaphandre
-        state: absent
+      shell: dnf remove -y scaphandre
     - name: Get RPM package
       get_url:
         url: "{{ github_rpm_url }}"
