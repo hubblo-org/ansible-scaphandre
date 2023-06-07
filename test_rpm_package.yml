@@ -33,9 +33,9 @@
     - name: Refresh systemd config
       shell: systemctl daemon-reload
     - name: Start & enable service
-      shell: "systemctl start {{ github_package_name }} && systemctl enable {{ github_package_name }}"
+      shell: "systemctl start {{ github_package_name | default('scaphandre')}} && systemctl enable {{ github_package_name | default('scaphandre')}}"
     - name: Check service state
-      shell: "systemctl status {{ github_package_name }}"
+      shell: "systemctl status {{ github_package_name | default('scaphandre') }}"
       register: result
     - name: Display error if failed
       fail:
