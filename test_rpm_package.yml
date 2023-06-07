@@ -13,6 +13,7 @@
         base_ref: {{ github_base_ref | default('undefined')}} 
         server_url: {{ github_server_url | default('undefined')}} 
         rpm_url: {{ github_rpm_url | default('undefined') }}
+        package_name: {{ github_package_name | default('scaphandre') }}
         "
     - fail:
         msg: Server URL is not authorized to run this job.
@@ -21,7 +22,7 @@
         msg: Repository is not authorized to run this job.
       when: not "scaphandre" in github_repository
     - name: Ensure scaphandre package is purged
-      shell: dnf remove -y scaphandre
+      shell: "dnf remove -y {{ github_package_name | default('scaphandre') }}"
     - name: Get RPM package
       get_url:
         url: "{{ github_rpm_url }}"
@@ -32,9 +33,9 @@
     - name: Refresh systemd config
       shell: systemctl daemon-reload
     - name: Start & enable service
-      shell: systemctl start scaphandre && systemctl enable scaphandre
+      shell: "systemctl start {{ github_package_name }} && systemctl enable {{ github_package_name }}"
     - name: Check service state
-      shell: systemctl status scaphandre
+      shell: "systemctl status {{ github_package_name }}"
       register: result
     - name: Display error if failed
       fail:
